@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="依赖库pcre 正则 ngx_http_proxy_module 反向代理 ngx_http_substitutions_filter_module 多重替换 安装 以 ubuntu 14.04 为例 i386, x86_64 均适用 最简安装123456789101112131415161718192021222324252627282930313233343536373839404142434">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx Google 扩展">
+<meta property="og:url" content="http://yokiy.com/2018/01/17/Nginx-Google-扩展/index.html">
+<meta property="og:site_name" content="Yokiy">
+<meta property="og:description" content="依赖库pcre 正则 ngx_http_proxy_module 反向代理 ngx_http_substitutions_filter_module 多重替换 安装 以 ubuntu 14.04 为例 i386, x86_64 均适用 最简安装123456789101112131415161718192021222324252627282930313233343536373839404142434">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-17T07:30:42.891Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nginx Google 扩展">
+<meta name="twitter:description" content="依赖库pcre 正则 ngx_http_proxy_module 反向代理 ngx_http_substitutions_filter_module 多重替换 安装 以 ubuntu 14.04 为例 i386, x86_64 均适用 最简安装123456789101112131415161718192021222324252627282930313233343536373839404142434">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yokiy.com/2018/01/17/Nginx-Google-扩展/"/>
+
+
+
+
+
+  <title>Nginx Google 扩展 | Yokiy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yokiy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archives"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yokiy.com/2018/01/17/Nginx-Google-扩展/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yokiy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yokiy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Nginx Google 扩展</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T15:15:56+08:00">
+                2018-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="依赖库"><a href="#依赖库" class="headerlink" title="依赖库"></a>依赖库</h2><pre><code>pcre 正则
+ngx_http_proxy_module 反向代理
+ngx_http_substitutions_filter_module 多重替换
+</code></pre><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
+<p>以 ubuntu 14.04 为例 i386, x86_64 均适用</p>
+<h3 id="最简安装"><a href="#最简安装" class="headerlink" title="最简安装"></a>最简安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 安装 gcc &amp; git</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">apt-get install build-essential git gcc g++ make</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 安装nginx以及依赖</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 下载最新版源码</span></span><br><span class="line"><span class="comment"># nginx 官网: </span></span><br><span class="line"><span class="comment"># http://nginx.org/en/download.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">wget <span class="string">"http://nginx.org/download/nginx-1.7.8.tar.gz"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 下载最新版 pcre</span></span><br><span class="line"><span class="comment"># pcre 官网:</span></span><br><span class="line"><span class="comment"># http://www.pcre.org/</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">wget <span class="string">"ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.38.tar.gz"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 下载最新版 openssl</span></span><br><span class="line"><span class="comment"># opessl 官网:</span></span><br><span class="line"><span class="comment"># https://www.openssl.org/</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">wget <span class="string">"https://www.openssl.org/source/openssl-1.0.1j.tar.gz"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 下载最新版 zlib</span></span><br><span class="line"><span class="comment"># zlib 官网:</span></span><br><span class="line"><span class="comment"># http://www.zlib.net/</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">wget <span class="string">"http://zlib.net/zlib-1.2.8.tar.gz"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 下载本扩展</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/cuber/ngx_http_google_filter_module</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 下载 substitutions 扩展</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/yaoweibin/ngx_http_substitutions_filter_module</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 解压缩</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">tar xzvf nginx-1.7.8.tar.gz</span><br><span class="line">tar xzvf pcre-8.38.tar.gz</span><br><span class="line">tar xzvf openssl-1.0.1j.tar.gz</span><br><span class="line">tar xzvf zlib-1.2.8.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 进入 nginx 源码目录</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="built_in">cd</span> nginx-1.7.8</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 设置编译选项</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">./configure \</span><br><span class="line">  --prefix=/opt/nginx-1.7.8 \</span><br><span class="line">  --with-pcre=../pcre-8.38 \</span><br><span class="line">  --with-openssl=../openssl-1.0.1j \</span><br><span class="line">  --with-zlib=../zlib-1.2.8 \</span><br><span class="line">  --with-http_ssl_module \</span><br><span class="line">  --add-module=../ngx_http_google_filter_module \</span><br><span class="line">  --add-module=../ngx_http_substitutions_filter_module</span><br><span class="line">  </span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 编译, 安装</span></span><br><span class="line"><span class="comment"># 如果扩展有报错, 请发 issue 到</span></span><br><span class="line"><span class="comment"># https://github.com/cuber/ngx_http_google_filter_module/issues</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 启动, 安装过程到此结束</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">sudo /opt/nginx-1.7.8/sbin/nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 配置修改后, 需要 reload nginx 来让配置生效, </span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">sudo /opt/nginx-1.7.8/sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="从发行版迁移"><a href="#从发行版迁移" class="headerlink" title="从发行版迁移"></a>从发行版迁移</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 安装 gcc &amp; git</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">apt-get install build-essential git gcc g++ make</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 安装发行版</span></span><br><span class="line"><span class="comment"># (已安装的请忽略)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">apt-get install nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 查看发行版编译选项及版本</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">nginx -V</span><br><span class="line"><span class="comment"># nginx version: nginx/1.4.7</span></span><br><span class="line"><span class="comment"># built by gcc 4.8.2 (Ubuntu 4.8.2-19ubuntu1)</span></span><br><span class="line"><span class="comment"># TLS SNI support enabled</span></span><br><span class="line"><span class="comment"># configure arguments: </span></span><br><span class="line"><span class="comment">#  --with-cc-opt='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -D_FORTIFY_SOURCE=2' \</span></span><br><span class="line"><span class="comment">#  --with-ld-opt='-Wl,-Bsymbolic-functions -Wl,-z,relro' \</span></span><br><span class="line"><span class="comment">#  --prefix=/usr/share/nginx \</span></span><br><span class="line"><span class="comment">#  --conf-path=/etc/nginx/nginx.conf \</span></span><br><span class="line"><span class="comment">#  --http-log-path=/var/log/nginx/access.log \</span></span><br><span class="line"><span class="comment">#  --error-log-path=/var/log/nginx/error.log \</span></span><br><span class="line"><span class="comment">#  --lock-path=/var/lock/nginx.lock \</span></span><br><span class="line"><span class="comment">#  --pid-path=/run/nginx.pid \</span></span><br><span class="line"><span class="comment">#  --http-client-body-temp-path=/var/lib/nginx/body \</span></span><br><span class="line"><span class="comment">#  --http-fastcgi-temp-path=/var/lib/nginx/fastcgi \</span></span><br><span class="line"><span class="comment">#  --http-proxy-temp-path=/var/lib/nginx/proxy \</span></span><br><span class="line"><span class="comment">#  --http-scgi-temp-path=/var/lib/nginx/scgi \</span></span><br><span class="line"><span class="comment">#  --http-uwsgi-temp-path=/var/lib/nginx/uwsgi \</span></span><br><span class="line"><span class="comment">#  --with-debug \</span></span><br><span class="line"><span class="comment">#  --with-pcre-jit \</span></span><br><span class="line"><span class="comment">#  --with-ipv6 \</span></span><br><span class="line"><span class="comment">#  --with-http_ssl_module \</span></span><br><span class="line"><span class="comment">#  --with-http_stub_status_module \</span></span><br><span class="line"><span class="comment">#  --with-http_realip_module \</span></span><br><span class="line"><span class="comment">#  --with-http_addition_module \</span></span><br><span class="line"><span class="comment">#  --with-http_dav_module \</span></span><br><span class="line"><span class="comment">#  --with-http_geoip_module \</span></span><br><span class="line"><span class="comment">#  --with-http_gzip_static_module \</span></span><br><span class="line"><span class="comment">#  --with-http_image_filter_module \</span></span><br><span class="line"><span class="comment">#  --with-http_spdy_module \</span></span><br><span class="line"><span class="comment">#  --with-http_sub_module \</span></span><br><span class="line"><span class="comment">#  --with-http_xslt_module \</span></span><br><span class="line"><span class="comment">#  --with-mail \</span></span><br><span class="line"><span class="comment">#  --with-mail_ssl_module</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 下载对应 nginx 大版本</span></span><br><span class="line"><span class="comment"># nginx 官网: </span></span><br><span class="line"><span class="comment"># http://nginx.org/en/download.html</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">wget <span class="string">"http://nginx.org/download/nginx-1.4.7.tar.gz"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 下载本扩展</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/cuber/ngx_http_google_filter_module</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 下载 substitutions 扩展</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/yaoweibin/ngx_http_substitutions_filter_module</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 安装依赖库的 dev 包</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">apt-get install libpcre3-dev libssl-dev zlib1g-dev libxslt1-dev libgd-dev libgeoip-dev</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 请对照自己发行版的 configure 参数进行 configure, 勿直接 copy 以下配置</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">./configure \</span><br><span class="line">  --with-cc-opt=<span class="string">'-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -D_FORTIFY_SOURCE=2'</span> \</span><br><span class="line">  --with-ld-opt=<span class="string">'-Wl,-Bsymbolic-functions -Wl,-z,relro'</span> \</span><br><span class="line">  --prefix=/usr/share/nginx \</span><br><span class="line">  --conf-path=/etc/nginx/nginx.conf \</span><br><span class="line">  --http-log-path=/var/<span class="built_in">log</span>/nginx/access.log \</span><br><span class="line">  --error-log-path=/var/<span class="built_in">log</span>/nginx/error.log \</span><br><span class="line">  --lock-path=/var/lock/nginx.lock \</span><br><span class="line">  --pid-path=/run/nginx.pid \</span><br><span class="line">  --http-client-body-temp-path=/var/lib/nginx/body \</span><br><span class="line">  --http-fastcgi-temp-path=/var/lib/nginx/fastcgi \</span><br><span class="line">  --http-proxy-temp-path=/var/lib/nginx/proxy \</span><br><span class="line">  --http-scgi-temp-path=/var/lib/nginx/scgi \</span><br><span class="line">  --http-uwsgi-temp-path=/var/lib/nginx/uwsgi \</span><br><span class="line">  --with-debug \</span><br><span class="line">  --with-pcre-jit \</span><br><span class="line">  --with-ipv6 \</span><br><span class="line">  --with-http_ssl_module \</span><br><span class="line">  --with-http_stub_status_module \</span><br><span class="line">  --with-http_realip_module \</span><br><span class="line">  --with-http_addition_module \</span><br><span class="line">  --with-http_dav_module \</span><br><span class="line">  --with-http_geoip_module \</span><br><span class="line">  --with-http_gzip_static_module \</span><br><span class="line">  --with-http_image_filter_module \</span><br><span class="line">  --with-http_spdy_module \</span><br><span class="line">  --with-http_sub_module \</span><br><span class="line">  --with-http_xslt_module \</span><br><span class="line">  --with-mail \</span><br><span class="line">  --with-mail_ssl_module \</span><br><span class="line">  --add-module=../ngx_http_google_filter_module \</span><br><span class="line">  --add-module=../ngx_http_substitutions_filter_module</span><br><span class="line">  </span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 覆盖二进制文件</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">cp -rf objs/nginx /usr/sbin/nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 重启 nginx 至此, 迁移工作结束</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line">service nginx stop</span><br><span class="line">service nginx start</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 配置修改后, 需要 restart nginx 来让配置生效</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">service nginx restart</span><br><span class="line">基本配置方法</span><br><span class="line"></span><br><span class="line">http配置方式</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">  server_name &lt;你的域名&gt;;</span><br><span class="line">  listen 80;</span><br><span class="line"></span><br><span class="line">  resolver 8.8.8.8;</span><br><span class="line">  location / &#123;</span><br><span class="line">    google on;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">https配置方式</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">  server_name &lt;你的域名&gt;;</span><br><span class="line">  listen 443;</span><br><span class="line"></span><br><span class="line">  ssl on;</span><br><span class="line">  ssl_certificate &lt;你的证书&gt;;</span><br><span class="line">  ssl_certificate_key &lt;你的私钥&gt;;</span><br><span class="line"></span><br><span class="line">  resolver 8.8.8.8;</span><br><span class="line">  location / &#123;</span><br><span class="line">    google on;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="进阶配置方法"><a href="#进阶配置方法" class="headerlink" title="进阶配置方法"></a>进阶配置方法</h3><p>基本搜索<br>需要配置 resolver 用于域名解析<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  <span class="comment"># ... 仅列举部分配置</span></span><br><span class="line">  resolver 8.8.8.8;</span><br><span class="line">  location / &#123;</span><br><span class="line">    google on;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment"># ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="谷歌学术"><a href="#谷歌学术" class="headerlink" title="谷歌学术"></a>谷歌学术</h3><p>google_scholar 依赖于 google, 所以 google_scholar 无法独立使用.<br>由于谷歌学术近日升级, 强制使用 https 协议, 并且 ncr 已经支持, 所以不再需要指定谷歌学术的 tld<br>配置 nginx<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">  google on;</span><br><span class="line">  google_scholar on;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="默认语言偏好"><a href="#默认语言偏好" class="headerlink" title="默认语言偏好"></a>默认语言偏好</h3><p>默认的语言偏好可用 google_language 来设置, 如果没有设置, 默认使用 zh-CN (中文)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">  google on;</span><br><span class="line">  google_scholar on;</span><br><span class="line">  <span class="comment"># 设置成德文</span></span><br><span class="line">  google_language <span class="string">"de"</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="支持的语言如下"><a href="#支持的语言如下" class="headerlink" title="支持的语言如下."></a>支持的语言如下.</h3><p>ar    -&gt; 阿拉伯<br>bg    -&gt; 保加利亚<br>ca    -&gt; 加泰罗尼亚<br>zh-CN -&gt; 中国 (简体)<br>zh-TW -&gt; 中国 (繁体)<br>hr    -&gt; 克罗地亚<br>cs    -&gt; 捷克<br>da    -&gt; 丹麦<br>nl    -&gt; 荷兰<br>en    -&gt; 英语<br>tl    -&gt; 菲律宾<br>fi    -&gt; 芬兰<br>fr    -&gt; 法国<br>de    -&gt; 德国<br>el    -&gt; 希腊<br>iw    -&gt; 希伯来<br>hi    -&gt; 印地文<br>hu    -&gt; 匈牙利<br>id    -&gt; 印度尼西亚<br>it    -&gt; 意大利<br>ja    -&gt; 日本<br>ko    -&gt; 朝鲜<br>lv    -&gt; 拉脱维亚<br>lt    -&gt; 立陶宛<br>no    -&gt; 挪威<br>fa    -&gt; 波斯<br>pl    -&gt; 波兰<br>pt-BR -&gt; 葡萄牙 (巴西)<br>pt-PT -&gt; 葡萄牙 (葡萄牙)<br>ro    -&gt; 罗马尼亚<br>ru    -&gt; 俄罗斯<br>sr    -&gt; 塞尔维亚<br>sk    -&gt; 斯洛伐克<br>sl    -&gt; 斯洛文尼亚<br>es    -&gt; 西班牙<br>sv    -&gt; 瑞典<br>th    -&gt; 泰国<br>tr    -&gt; 土耳其<br>uk    -&gt; 乌克兰<br>vi    -&gt; 越南<br>搜索引擎爬虫许可</p>
+<p>任何搜索引擎爬虫都不被允许爬取 google 镜像<br>如下的默认 robots.txt 已经内置.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User-agent: *</span><br><span class="line">Disallow: /</span><br></pre></td></tr></table></figure></p>
+<p>如果想要使用 google 自己的 robots.txt 请将 google_robots_allow 设为 on<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#...</span></span><br><span class="line">location / &#123;</span><br><span class="line">  google on;</span><br><span class="line">  google_robots_allow on;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#...</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Upstreaming"><a href="#Upstreaming" class="headerlink" title="Upstreaming"></a>Upstreaming</h3><p>upstream 减少一次域名解析的开销, 并且通过配置多个网段的 google ip 能够一定程度上减少被 google 机器人识别程序侦测到的几率 (弹验证码).<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可以通过如下方法获取 google ip</span></span><br><span class="line">➜  ~  dig www.google.com @8.8.8.8 +short</span><br><span class="line">173.194.38.209</span><br><span class="line">173.194.38.211</span><br><span class="line">173.194.38.212</span><br><span class="line">173.194.38.210</span><br><span class="line">173.194.38.208</span><br></pre></td></tr></table></figure></p>
+<p>然后将获取到的 ip 配置如下即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">upstream www.google.com &#123;</span><br><span class="line">  server 173.194.38.209:443;</span><br><span class="line">  server 173.194.38.211:443;</span><br><span class="line">  server 173.194.38.212:443;</span><br><span class="line">  server 173.194.38.210:443;</span><br><span class="line">  server 173.194.38.208:443;</span><br><span class="line">&#125;</span><br><span class="line">Proxy Protocal</span><br></pre></td></tr></table></figure></p>
+<p>默认采用 https 与后端服务器通信.<br>你可以使用 google_ssl_off 来强制将一些域降到 http 协议.<br>这个设置可以让一些需要二次转发的域通过 http 协议进行转发, 从而不再依赖 ssl 证书.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 例如 'www.google.com' 按如下方式代理</span></span><br><span class="line"><span class="comment"># vps(hk) -&gt; vps(us) -&gt; google</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># vps(hk) 配置</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">server &#123;</span><br><span class="line">  <span class="comment"># ...</span></span><br><span class="line">  location / &#123;</span><br><span class="line">    google on;</span><br><span class="line">    google_ssl_off <span class="string">"www.google.com"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment"># ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">upstream www.google.com &#123;</span><br><span class="line">  server &lt; vps(us) 的 ip &gt;:80;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># vps(us) 配置</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">server &#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  server_name www.google.com;</span><br><span class="line">  <span class="comment"># ...</span></span><br><span class="line">  location / &#123;</span><br><span class="line">    proxy_pass https://www.google.com;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment"># ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+    <div>
+          
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/01/17/Nginx-Google-扩展/">Nginx Google 扩展</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Yokiy 的个人博客">Yokiy</a></p>
+  <p><span>发布时间:</span>2018年01月17日 - 15:01</p>
+  <p><span>最后更新:</span>2018年01月17日 - 15:01</p>
+  <p><span>原始链接:</span><a href="/2018/01/17/Nginx-Google-扩展/" title="Nginx Google 扩展">http://yokiy.com/2018/01/17/Nginx-Google-扩展/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yokiy.com/2018/01/17/Nginx-Google-扩展/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          icon: "success",
+          showConfirmButton: true
+          });
+	});
+    });
+</script>
+
+
+          
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/17/Git冲突：commit-your-changes-or-stash-them-before-you-can-merge/" rel="next" title="﻿Git冲突：commit your changes or stash them before you can merge.">
+                <i class="fa fa-chevron-left"></i> ﻿Git冲突：commit your changes or stash them before you can merge.
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+      <div>
+        
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+        
+      </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Yokiy</p>
+              <p class="site-description motion-element" itemprop="description">记录一些工作经验</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖库"><span class="nav-number">1.</span> <span class="nav-text">依赖库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最简安装"><span class="nav-number">2.1.</span> <span class="nav-text">最简安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从发行版迁移"><span class="nav-number">2.2.</span> <span class="nav-text">从发行版迁移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进阶配置方法"><span class="nav-number">2.3.</span> <span class="nav-text">进阶配置方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谷歌学术"><span class="nav-number">2.4.</span> <span class="nav-text">谷歌学术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认语言偏好"><span class="nav-number">2.5.</span> <span class="nav-text">默认语言偏好</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持的语言如下"><span class="nav-number">2.6.</span> <span class="nav-text">支持的语言如下.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Upstreaming"><span class="nav-number">2.7.</span> <span class="nav-text">Upstreaming</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yokiy</span>
+
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共3.5k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
