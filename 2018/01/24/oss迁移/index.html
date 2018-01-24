@@ -95,17 +95,17 @@
 
 
 
-<meta name="description" content="1234567891011121314151617181920212223242526272829# -*- coding: utf-8 -*-import osimport timeimport oss2import logging# 打印loglogging.basicConfig(filename=os.path.join(os.getcwd(),&apos;ossdebug.log&apos;),level=">
+<meta name="description" content="阿里云oss跨区域迁移 由于阿里云跨区域复制需收流量费，而且不支持过滤已存在文件，所以利用api实现过滤掉已存在的文件，上传使用内网，降低流量费用。1234567891011121314151617181920212223242526272829# -*- coding: utf-8 -*-import osimport timeimport oss2import logging# 打印loglo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="oss迁移">
 <meta property="og:url" content="http://yokiy.com/2018/01/24/oss迁移/index.html">
 <meta property="og:site_name" content="Yokiy">
-<meta property="og:description" content="1234567891011121314151617181920212223242526272829# -*- coding: utf-8 -*-import osimport timeimport oss2import logging# 打印loglogging.basicConfig(filename=os.path.join(os.getcwd(),&apos;ossdebug.log&apos;),level=">
+<meta property="og:description" content="阿里云oss跨区域迁移 由于阿里云跨区域复制需收流量费，而且不支持过滤已存在文件，所以利用api实现过滤掉已存在的文件，上传使用内网，降低流量费用。1234567891011121314151617181920212223242526272829# -*- coding: utf-8 -*-import osimport timeimport oss2import logging# 打印loglo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-24T10:30:52.803Z">
+<meta property="og:updated_time" content="2018-01-24T10:34:41.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="oss迁移">
-<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829# -*- coding: utf-8 -*-import osimport timeimport oss2import logging# 打印loglogging.basicConfig(filename=os.path.join(os.getcwd(),&apos;ossdebug.log&apos;),level=">
+<meta name="twitter:description" content="阿里云oss跨区域迁移 由于阿里云跨区域复制需收流量费，而且不支持过滤已存在文件，所以利用api实现过滤掉已存在的文件，上传使用内网，降低流量费用。1234567891011121314151617181920212223242526272829# -*- coding: utf-8 -*-import osimport timeimport oss2import logging# 打印loglo">
 
 
 
@@ -345,7 +345,10 @@
       
 
       
-        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> oss2</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印log</span></span><br><span class="line">logging.basicConfig(filename=os.path.join(os.getcwd(),<span class="string">'ossdebug.log'</span>),level=logging.DEBUG)</span><br><span class="line">auth = oss2.Auth(<span class="string">'&lt;阿里云access id&gt;'</span>, <span class="string">'&lt;阿里云access key&gt;'</span>)</span><br><span class="line">bucket = oss2.Bucket(auth, <span class="string">'&lt;目标endpoint&gt;'</span>, <span class="string">'&lt;目标bucket&gt;'</span>)</span><br><span class="line">bucket2 = oss2.Bucket(auth, <span class="string">'&lt;源endpoint&gt;'</span>, <span class="string">'&lt;源bucket&gt;'</span>)</span><br><span class="line"></span><br><span class="line">logging.info(<span class="string">"开始时间："</span>+ time.asctime( time.localtime(time.time()) ))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> b <span class="keyword">in</span> oss2.ObjectIterator(bucket2):  <span class="comment">## 罗列文件</span></span><br><span class="line">    a = b.key</span><br><span class="line">    existfile = bucket.object_exists(a)  <span class="comment">## 判断目标bucket是否存在文件</span></span><br><span class="line">    <span class="keyword">if</span> existfile:</span><br><span class="line">        logging.info(a)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        f = a.split(<span class="string">'/'</span>, <span class="number">1</span>)[<span class="number">-1</span>]  <span class="comment">## 去除文件夹,取文件名</span></span><br><span class="line">        print(f)</span><br><span class="line">        bucket2.get_object_to_file(a,f)  <span class="comment">## 下载差异文件</span></span><br><span class="line">        bucket.put_object_from_file(a,f) <span class="comment">## 上传差异文件</span></span><br><span class="line">        <span class="keyword">if</span> os.path.exists(f):  <span class="comment">## 删除本地差异文件</span></span><br><span class="line">            os.remove(f)</span><br><span class="line"></span><br><span class="line">logging.info(<span class="string">"结束时间："</span> + time.asctime( time.localtime(time.time()) ))</span><br></pre></td></tr></table></figure>
+        <h2 id="阿里云oss跨区域迁移"><a href="#阿里云oss跨区域迁移" class="headerlink" title="阿里云oss跨区域迁移"></a>阿里云oss跨区域迁移</h2><blockquote>
+<p>由于阿里云跨区域复制需收流量费，而且不支持过滤已存在文件，所以利用api实现过滤掉已存在的文件，上传使用内网，降低流量费用。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> oss2</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印log</span></span><br><span class="line">logging.basicConfig(filename=os.path.join(os.getcwd(),<span class="string">'ossdebug.log'</span>),level=logging.DEBUG)</span><br><span class="line">auth = oss2.Auth(<span class="string">'&lt;阿里云access id&gt;'</span>, <span class="string">'&lt;阿里云access key&gt;'</span>)</span><br><span class="line">bucket = oss2.Bucket(auth, <span class="string">'&lt;目标endpoint&gt;'</span>, <span class="string">'&lt;目标bucket&gt;'</span>)</span><br><span class="line">bucket2 = oss2.Bucket(auth, <span class="string">'&lt;源endpoint&gt;'</span>, <span class="string">'&lt;源bucket&gt;'</span>)</span><br><span class="line"></span><br><span class="line">logging.info(<span class="string">"开始时间："</span>+ time.asctime( time.localtime(time.time()) ))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> b <span class="keyword">in</span> oss2.ObjectIterator(bucket2):  <span class="comment">## 罗列文件</span></span><br><span class="line">    a = b.key</span><br><span class="line">    existfile = bucket.object_exists(a)  <span class="comment">## 判断目标bucket是否存在文件</span></span><br><span class="line">    <span class="keyword">if</span> existfile:</span><br><span class="line">        logging.info(a)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        f = a.split(<span class="string">'/'</span>, <span class="number">1</span>)[<span class="number">-1</span>]  <span class="comment">## 去除文件夹,取文件名</span></span><br><span class="line">        print(f)</span><br><span class="line">        bucket2.get_object_to_file(a,f)  <span class="comment">## 下载差异文件</span></span><br><span class="line">        bucket.put_object_from_file(a,f) <span class="comment">## 上传差异文件</span></span><br><span class="line">        <span class="keyword">if</span> os.path.exists(f):  <span class="comment">## 删除本地差异文件</span></span><br><span class="line">            os.remove(f)</span><br><span class="line"></span><br><span class="line">logging.info(<span class="string">"结束时间："</span> + time.asctime( time.localtime(time.time()) ))</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+
       
     </div>
     
@@ -444,8 +447,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -497,6 +509,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#阿里云oss跨区域迁移"><span class="nav-number">1.</span> <span class="nav-text">阿里云oss跨区域迁移</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -539,7 +567,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共3.7k字</span>
+  <span class="post-count">博客全站共3.8k字</span>
 </div>
 
         
