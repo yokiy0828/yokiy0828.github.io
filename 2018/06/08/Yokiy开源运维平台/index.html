@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Yokiy 运维自动化平台项目   项目地址：https://gitee.com/jdytrip/jdy_devops.git DEMO: http://demo.yokiy.com 用户名 admin 密码 admin123   项目简介 这是一个web自动化平台，为企业实现一键部署。 基于Python 3 和 Django2.0 Bootstrap ampleadmin 模板 Docker k">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Yokiy 运维自动化平台项目">
+<meta property="og:url" content="http://yokiy.com/2018/06/08/Yokiy开源运维平台/index.html">
+<meta property="og:site_name" content="Yokiy">
+<meta property="og:description" content="Yokiy 运维自动化平台项目   项目地址：https://gitee.com/jdytrip/jdy_devops.git DEMO: http://demo.yokiy.com 用户名 admin 密码 admin123   项目简介 这是一个web自动化平台，为企业实现一键部署。 基于Python 3 和 Django2.0 Bootstrap ampleadmin 模板 Docker k">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/qq群.jpg">
+<meta property="og:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/1.png">
+<meta property="og:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/2.png">
+<meta property="og:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/3.png">
+<meta property="og:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/4.png">
+<meta property="og:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/5.png">
+<meta property="og:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/6.png">
+<meta property="og:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/7.png">
+<meta property="og:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/8.png">
+<meta property="og:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/9.png">
+<meta property="og:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/10.png">
+<meta property="og:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/11.png">
+<meta property="og:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/12.png">
+<meta property="og:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/13.png">
+<meta property="og:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/14.png">
+<meta property="og:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/15.png">
+<meta property="og:updated_time" content="2018-06-08T03:54:09.267Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Yokiy 运维自动化平台项目">
+<meta name="twitter:description" content="Yokiy 运维自动化平台项目   项目地址：https://gitee.com/jdytrip/jdy_devops.git DEMO: http://demo.yokiy.com 用户名 admin 密码 admin123   项目简介 这是一个web自动化平台，为企业实现一键部署。 基于Python 3 和 Django2.0 Bootstrap ampleadmin 模板 Docker k">
+<meta name="twitter:image" content="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/qq群.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yokiy.com/2018/06/08/Yokiy开源运维平台/"/>
+
+
+
+
+
+  <title>Yokiy 运维自动化平台项目 | Yokiy</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yokiy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yokiy.com/2018/06/08/Yokiy开源运维平台/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yokiy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yokiy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Yokiy 运维自动化平台项目</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-08T11:54:09+08:00">
+                2018-06-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Yokiy-运维自动化平台项目"><a href="#Yokiy-运维自动化平台项目" class="headerlink" title="Yokiy 运维自动化平台项目"></a>Yokiy 运维自动化平台项目</h1><p> <img src="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/qq群.jpg" alt="gitee"></p>
+<ul>
+<li>项目地址：<a href="https://gitee.com/jdytrip/jdy_devops.git" target="_blank" rel="noopener">https://gitee.com/jdytrip/jdy_devops.git</a></li>
+<li>DEMO: <a href="http://demo.yokiy.com" target="_blank" rel="noopener">http://demo.yokiy.com</a> 用户名 admin 密码 admin123</li>
+</ul>
+<hr>
+<h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><ul>
+<li>这是一个web自动化平台，为企业实现一键部署。</li>
+<li>基于Python 3 和 Django2.0</li>
+<li>Bootstrap ampleadmin 模板</li>
+<li>Docker kubernetes</li>
+<li>Mysql 5.6 &amp; Redis 4.0</li>
+</ul>
+<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><ol>
+<li>用户权限管理</li>
+<li>CI/CD 持续部署，持续构建</li>
+<li>MySql执行管理</li>
+<li>应用日志管理</li>
+<li>应用监控</li>
+<li>API监控</li>
+</ol>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ol>
+<li>自动创建应用，yml配置文件前置</li>
+<li>监控告警通知</li>
+<li>配置模板</li>
+<li>多构建节点</li>
+<li>发布审核</li>
+<li>API监控多节点</li>
+<li>文档管理</li>
+<li>短信验证</li>
+<li>钉钉加入</li>
+</ol>
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><ul>
+<li>django==2.0</li>
+<li>requests==2.18.4</li>
+<li>mysqlclient==1.3.12</li>
+<li>PyMySQL==0.8.0</li>
+<li>pycurl==7.43.0.1</li>
+<li>APScheduler==3.0.3</li>
+<li>SQLAlchemy==1.1.7</li>
+<li>celery==4.1.1</li>
+<li>django-celery-results==1.0.1</li>
+<li>django-redis==4.8.0</li>
+</ul>
+<h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p> <img src="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/1.png" alt="gitee"><br> <img src="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/2.png" alt="gitee"><br> <img src="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/3.png" alt="gitee"><br> <img src="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/4.png" alt="gitee"><br> <img src="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/5.png" alt="gitee"><br> <img src="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/6.png" alt="gitee"><br> <img src="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/7.png" alt="gitee"><br> <img src="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/8.png" alt="gitee"><br> <img src="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/9.png" alt="gitee"><br> <img src="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/10.png" alt="gitee"><br> <img src="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/11.png" alt="gitee"><br> <img src="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/12.png" alt="gitee"><br> <img src="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/13.png" alt="gitee"><br> <img src="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/14.png" alt="gitee"><br> <img src="https://gitee.com/jdytrip/jdy_devops/raw/master/static/screenshot/15.png" alt="gitee"></p>
+<h2 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h2><ul>
+<li>部署kubernetes并<a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank" rel="noopener">安装kubectl</a></li>
+<li>安装mysql &amp; redis &amp; nginx</li>
+<li><p>安装pyenv：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash    <span class="comment"># 安装虚拟环境，脚本跑完之后会有提示 按照提示修改自己的`~/.bash_profile</span></span><br><span class="line"><span class="comment"># 打开配置文件</span></span><br><span class="line">vim ~/.bash_profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制刚才提示中的类似这三段</span></span><br><span class="line"><span class="comment"># 不能直接复制我的,每个人的不一样</span></span><br><span class="line">export PATH=<span class="string">"/root/.pyenv/bin:$PATH"</span></span><br><span class="line">eval <span class="string">"$(pyenv init -)"</span></span><br><span class="line">eval <span class="string">"$(pyenv virtualenv-"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使自己的profile生效</span></span><br><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装Python3:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv install <span class="number">3.6</span><span class="number">.5</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建运维平台运行的虚拟环境</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyenv virtualenv <span class="number">3.6</span><span class="number">.1</span> venv</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Clone并编写配置:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone -b master https://gitee.com/jdytrip/jdy_devops.git</span><br><span class="line">cd /data/jdy_devops  <span class="comment"># 进入网站目录</span></span><br><span class="line">pyenv local venv <span class="comment"># 将项目文件夹的环境设置为 virtualenv</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改jdyops/db.py 配置文件</p>
+</li>
+<li><p>安装依赖：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化数据库：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations django_celery_results  <span class="comment"># 可忽略</span></span><br><span class="line">python manage.py makemigrations server</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化管理员数据和权限数据:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python ./daemon/init_db.py</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>注意，管理员账号初始化为admin，密码为admin123</p>
+</blockquote>
+<ul>
+<li><p>后台程序启动:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery multi start  -A jdyops worker -l info -c <span class="number">8</span> -n worker1.%h  <span class="comment"># 启动多进程 -c &#123;进程数&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动定时任务程序:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup python ./daemon/api_monitor.py &gt;&gt;./logs/api_monitor.log <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动nginx: 将daemon/jdy_devops.cnf 拷贝到nginx/conf/vhost下，并修改配件文件相应字段，然后启动</p>
+</li>
+<li><p>启动uwsgi</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi uwsgi.ini</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>前台启动celery</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A ManagerMaster worker --pool=solo -l info</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+    <div>
+          
+            
+
+          
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/25/修改mysql-definer/" rel="next" title="修改mysql definer">
+                <i class="fa fa-chevron-left"></i> 修改mysql definer
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+      <div>
+        
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+        
+      </div>
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Yokiy</p>
+              <p class="site-description motion-element" itemprop="description">记录一些工作经验</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Yokiy-运维自动化平台项目"><span class="nav-number">1.</span> <span class="nav-text">Yokiy 运维自动化平台项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目简介"><span class="nav-number">1.1.</span> <span class="nav-text">项目简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要功能"><span class="nav-number">1.2.</span> <span class="nav-text">主要功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO"><span class="nav-number">1.3.</span> <span class="nav-text">TODO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖"><span class="nav-number">1.4.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果图"><span class="nav-number">1.5.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署步骤"><span class="nav-number">1.6.</span> <span class="nav-text">部署步骤</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yokiy</span>
+
+  
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共4.8k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
