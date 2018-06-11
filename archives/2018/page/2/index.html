@@ -95,17 +95,16 @@
 
 
 
-<meta name="description" content="修改function、procedure的definer12select definer from mysql.proc;  -- 函数、存储过程update mysql.proc set definer=&amp;apos;user@localhost&amp;apos;; -- 如果有限定库或其它可以加上where条件 修改event的definer12select DEFINER from mysql.EV">
-<meta property="og:type" content="article">
-<meta property="og:title" content="修改mysql definer">
-<meta property="og:url" content="http://yokiy.com/2018/04/25/修改mysql-definer/index.html">
+<meta name="description" content="记录一些工作经验">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yokiy">
+<meta property="og:url" content="http://yokiy.com/archives/2018/page/2/index.html">
 <meta property="og:site_name" content="Yokiy">
-<meta property="og:description" content="修改function、procedure的definer12select definer from mysql.proc;  -- 函数、存储过程update mysql.proc set definer=&amp;apos;user@localhost&amp;apos;; -- 如果有限定库或其它可以加上where条件 修改event的definer12select DEFINER from mysql.EV">
+<meta property="og:description" content="记录一些工作经验">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-25T03:51:00.872Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="修改mysql definer">
-<meta name="twitter:description" content="修改function、procedure的definer12select definer from mysql.proc;  -- 函数、存储过程update mysql.proc set definer=&amp;apos;user@localhost&amp;apos;; -- 如果有限定库或其它可以加上where条件 修改event的definer12select DEFINER from mysql.EV">
+<meta name="twitter:title" content="Yokiy">
+<meta name="twitter:description" content="记录一些工作经验">
 
 
 
@@ -135,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yokiy.com/2018/04/25/修改mysql-definer/"/>
+  <link rel="canonical" href="http://yokiy.com/archives/2018/page/2/"/>
 
 
 
 
 
-  <title>修改mysql definer | Yokiy</title>
+  <title>归档 | Yokiy</title>
   
 
 
@@ -160,7 +159,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -264,162 +263,263 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
-  
+      <span class="archive-page-counter">
+        
+        
+        
+          
+        
+        嗯..! 目前共计 16 篇日志。 继续努力。
+      </span>
 
-  
-  
-  
+      
+
+        
+        
+        
+
+        
+          
+          <div class="collection-title">
+            <h1 class="archive-year" id="archive-year-2018">2018</h1>
+          </div>
+        
+        
+
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yokiy.com/2018/04/25/修改mysql-definer/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yokiy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yokiy">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">修改mysql definer</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2018/04/24/阿里云SLB-Python-sdk/" itemprop="url">
               
-                <span class="post-meta-item-text">发表于</span>
+                <span itemprop="name">阿里云SLB Python-sdk</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-25T11:47:28+08:00">
-                2018-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h4 id="修改function、procedure的definer"><a href="#修改function、procedure的definer" class="headerlink" title="修改function、procedure的definer"></a>修改function、procedure的definer</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select definer from mysql.proc;  -- 函数、存储过程</span><br><span class="line">update mysql.proc set definer=&apos;user@localhost&apos;; -- 如果有限定库或其它可以加上where条件</span><br></pre></td></tr></table></figure>
-<h4 id="修改event的definer"><a href="#修改event的definer" class="headerlink" title="修改event的definer"></a>修改event的definer</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select DEFINER from mysql.EVENT; -- 定时事件</span><br><span class="line">update mysql.EVENT set definer=&apos; user@localhost &apos;;</span><br></pre></td></tr></table></figure>
-<h4 id="修改view的definer"><a href="#修改view的definer" class="headerlink" title="修改view的definer"></a>修改view的definer</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">相比function的修改麻烦点：</span><br><span class="line">select DEFINER from information_schema.VIEWS; </span><br><span class="line">select concat(&quot;alter DEFINER=`user`@`localhost` SQL SECURITY DEFINER VIEW &quot;,TABLE_SCHEMA,&quot;.&quot;,TABLE_NAME,&quot; as &quot;,VIEW_DEFINITION,&quot;;&quot;) from information_schema.VIEWS where DEFINER&lt;&gt;&apos;user@localhost&apos;; </span><br><span class="line">查询出来的语句再执行一遍就好了。</span><br></pre></td></tr></table></figure>
-<h4 id="修改trigger的definer"><a href="#修改trigger的definer" class="headerlink" title="修改trigger的definer"></a>修改trigger的definer</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">目前还没有具体方便的方法，可以借助工具端如HeidiSQL、sqlyog等来一个个修改。注意改前有必要锁表,因为如果改的过程中有其它表改变而触发，会造成数据不一致。</span><br><span class="line">Flush tables with readlock</span><br><span class="line">Unlock tables</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    
-    
-    <div>
-          
-            
-
-          
-    </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/04/24/oss迁移/" rel="next" title="oss迁移">
-                <i class="fa fa-chevron-left"></i> oss迁移
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/08/Yokiy开源运维平台/" rel="prev" title="Yokiy 运维自动化平台项目">
-                Yokiy 运维自动化平台项目 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-      <div>
+            </a>
         
-          <div>
-    
-        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
-    
-</div>
+      </h2>
 
-        
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-04-24T20:20:13+08:00"
+              content="2018-04-24" >
+          04-24
+        </time>
       </div>
-    </footer>
-  </div>
-  
-  
-  
+
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
       
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/01/17/Nginx-Google-扩展/" itemprop="url">
+              
+                <span itemprop="name">Nginx Google 扩展</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-01-17T15:15:56+08:00"
+              content="2018-01-17" >
+          01-17
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/01/17/Git冲突：commit-your-changes-or-stash-them-before-you-can-merge/" itemprop="url">
+              
+                <span itemprop="name">﻿Git冲突：commit your changes or stash them before you can merge.</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-01-17T15:05:04+08:00"
+              content="2018-01-17" >
+          01-17
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/01/17/Gitlab库已损坏前端显示500错误解决方法/" itemprop="url">
+              
+                <span itemprop="name">﻿Gitlab库已损坏前端显示500错误解决方法</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-01-17T12:49:22+08:00"
+              content="2018-01-17" >
+          01-17
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/01/16/tomcat-扫描jar包，卡住不动/" itemprop="url">
+              
+                <span itemprop="name">tomcat 扫描jar包，卡住不动</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-01-16T18:49:45+08:00"
+              content="2018-01-16" >
+          01-16
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2018/01/16/MacOS-下安装mysqlclient-的问题及解决办法/" itemprop="url">
+              
+                <span itemprop="name">MacOS 下安装mysqlclient 的问题及解决办法</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-01-16T17:15:09+08:00"
+              content="2018-01-16" >
+          01-16
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
     </div>
   </div>
+  
+  
+  
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/archives/2018/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2018/">1</a><span class="page-number current">2</span>
+  </nav>
+
+
 
 
           </div>
@@ -427,10 +527,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -451,17 +547,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -512,22 +599,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改function、procedure的definer"><span class="nav-number">1.</span> <span class="nav-text">修改function、procedure的definer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改event的definer"><span class="nav-number">2.</span> <span class="nav-text">修改event的definer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改view的definer"><span class="nav-number">3.</span> <span class="nav-text">修改view的definer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改trigger的definer"><span class="nav-number">4.</span> <span class="nav-text">修改trigger的definer</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -677,10 +748,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

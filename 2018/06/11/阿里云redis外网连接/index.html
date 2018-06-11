@@ -95,17 +95,17 @@
 
 
 
-<meta name="description" content="修改function、procedure的definer12select definer from mysql.proc;  -- 函数、存储过程update mysql.proc set definer=&amp;apos;user@localhost&amp;apos;; -- 如果有限定库或其它可以加上where条件 修改event的definer12select DEFINER from mysql.EV">
+<meta name="description" content="在云服务器 ECS Linux 中安装 rinetd。123wget http://www.boutell.com/rinetd/http/rinetd.tar.gz &amp;amp;&amp;amp; tar -xvf rinetd.tar.gz &amp;amp;&amp;amp; cd rinetdsed -i &amp;apos;s/65536/65535/g&amp;apos; rinetd.c (修改端口范围)mkdir /usr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="修改mysql definer">
-<meta property="og:url" content="http://yokiy.com/2018/04/25/修改mysql-definer/index.html">
+<meta property="og:title" content="阿里云redis外网连接">
+<meta property="og:url" content="http://yokiy.com/2018/06/11/阿里云redis外网连接/index.html">
 <meta property="og:site_name" content="Yokiy">
-<meta property="og:description" content="修改function、procedure的definer12select definer from mysql.proc;  -- 函数、存储过程update mysql.proc set definer=&amp;apos;user@localhost&amp;apos;; -- 如果有限定库或其它可以加上where条件 修改event的definer12select DEFINER from mysql.EV">
+<meta property="og:description" content="在云服务器 ECS Linux 中安装 rinetd。123wget http://www.boutell.com/rinetd/http/rinetd.tar.gz &amp;amp;&amp;amp; tar -xvf rinetd.tar.gz &amp;amp;&amp;amp; cd rinetdsed -i &amp;apos;s/65536/65535/g&amp;apos; rinetd.c (修改端口范围)mkdir /usr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-25T03:51:00.872Z">
+<meta property="og:updated_time" content="2018-06-11T03:27:21.839Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="修改mysql definer">
-<meta name="twitter:description" content="修改function、procedure的definer12select definer from mysql.proc;  -- 函数、存储过程update mysql.proc set definer=&amp;apos;user@localhost&amp;apos;; -- 如果有限定库或其它可以加上where条件 修改event的definer12select DEFINER from mysql.EV">
+<meta name="twitter:title" content="阿里云redis外网连接">
+<meta name="twitter:description" content="在云服务器 ECS Linux 中安装 rinetd。123wget http://www.boutell.com/rinetd/http/rinetd.tar.gz &amp;amp;&amp;amp; tar -xvf rinetd.tar.gz &amp;amp;&amp;amp; cd rinetdsed -i &amp;apos;s/65536/65535/g&amp;apos; rinetd.c (修改端口范围)mkdir /usr">
 
 
 
@@ -135,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yokiy.com/2018/04/25/修改mysql-definer/"/>
+  <link rel="canonical" href="http://yokiy.com/2018/06/11/阿里云redis外网连接/"/>
 
 
 
 
 
-  <title>修改mysql definer | Yokiy</title>
+  <title>阿里云redis外网连接 | Yokiy</title>
   
 
 
@@ -278,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yokiy.com/2018/04/25/修改mysql-definer/">
+    <link itemprop="mainEntityOfPage" href="http://yokiy.com/2018/06/11/阿里云redis外网连接/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yokiy">
@@ -295,7 +295,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">修改mysql definer</h1>
+          <h1 class="post-title" itemprop="name headline">阿里云redis外网连接</h1>
         
 
         <div class="post-meta">
@@ -307,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-25T11:47:28+08:00">
-                2018-04-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T11:23:56+08:00">
+                2018-06-11
               </time>
             
 
@@ -345,10 +345,17 @@
       
 
       
-        <h4 id="修改function、procedure的definer"><a href="#修改function、procedure的definer" class="headerlink" title="修改function、procedure的definer"></a>修改function、procedure的definer</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select definer from mysql.proc;  -- 函数、存储过程</span><br><span class="line">update mysql.proc set definer=&apos;user@localhost&apos;; -- 如果有限定库或其它可以加上where条件</span><br></pre></td></tr></table></figure>
-<h4 id="修改event的definer"><a href="#修改event的definer" class="headerlink" title="修改event的definer"></a>修改event的definer</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select DEFINER from mysql.EVENT; -- 定时事件</span><br><span class="line">update mysql.EVENT set definer=&apos; user@localhost &apos;;</span><br></pre></td></tr></table></figure>
-<h4 id="修改view的definer"><a href="#修改view的definer" class="headerlink" title="修改view的definer"></a>修改view的definer</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">相比function的修改麻烦点：</span><br><span class="line">select DEFINER from information_schema.VIEWS; </span><br><span class="line">select concat(&quot;alter DEFINER=`user`@`localhost` SQL SECURITY DEFINER VIEW &quot;,TABLE_SCHEMA,&quot;.&quot;,TABLE_NAME,&quot; as &quot;,VIEW_DEFINITION,&quot;;&quot;) from information_schema.VIEWS where DEFINER&lt;&gt;&apos;user@localhost&apos;; </span><br><span class="line">查询出来的语句再执行一遍就好了。</span><br></pre></td></tr></table></figure>
-<h4 id="修改trigger的definer"><a href="#修改trigger的definer" class="headerlink" title="修改trigger的definer"></a>修改trigger的definer</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">目前还没有具体方便的方法，可以借助工具端如HeidiSQL、sqlyog等来一个个修改。注意改前有必要锁表,因为如果改的过程中有其它表改变而触发，会造成数据不一致。</span><br><span class="line">Flush tables with readlock</span><br><span class="line">Unlock tables</span><br></pre></td></tr></table></figure>
+        <h3 id="在云服务器-ECS-Linux-中安装-rinetd。"><a href="#在云服务器-ECS-Linux-中安装-rinetd。" class="headerlink" title="在云服务器 ECS Linux 中安装 rinetd。"></a>在云服务器 ECS Linux 中安装 rinetd。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.boutell.com/rinetd/http/rinetd.tar.gz &amp;&amp; tar -xvf rinetd.tar.gz &amp;&amp; cd rinetd</span><br><span class="line">sed -i &apos;s/65536/65535/g&apos; rinetd.c (修改端口范围)</span><br><span class="line">mkdir /usr/man&amp;&amp;make&amp;&amp;make install</span><br></pre></td></tr></table></figure>
+<p>注意：rinetd 安装包下载地址不确保下载可用性，您可以自行搜索安装包进行下载使用。<br>打开配置文件 rinetd.conf。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/rinetd.conf</span><br></pre></td></tr></table></figure></p>
+<p>在配置文件中输入如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0.0.0.0 6379 Redis 的链接地址 6379</span><br><span class="line">logfile /var/log/rinetd.log</span><br></pre></td></tr></table></figure></p>
+<p>说明：您可以使用 cat /etc/rinetd.conf命令来检验配置文件是否修改正确。</p>
+<p>执行如下命令启动 rinetd。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rinetd</span><br></pre></td></tr></table></figure></p>
+<p>注意！您可以通过<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo rinetd &gt;&gt;/etc/rc.local # 将rinetd 设置为自启动。</span><br></pre></td></tr></table></figure></p>
+<p>若遇到绑定报错，可以执行 pkill rinetd 结束进程，再执行 rinetd启动进程 rinetd。<br>rinetd 正常启动后， 执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp | grep 6379</span><br></pre></td></tr></table></figure></p>
+<p>确认服务是否正常运行。</p>
+<p>在本地进行验证测试。<br>您可以在本地通过 redis-cli 连接 ECS Linux 服务器后进行登录验证，比如安装了 rinetd 的服务器的 IP 是 1.1.1.1，即redis-cli -h 1.1.1.1 -a Redis的实例ID:Redis密码。或者通过 telent 连接 ECS Linux 服务器后进行操作验证。假设 ECS Linux 服务器的 IP 是 1.1.1.1，即 telnet 1.1.1.1 6379。<br>连接上 ECS Linux 服务器后，输入连接 Redis 的密码：auth Redis的连接密码。<br>进行数据写入及查询验证。</p>
+<p>通过上述步骤即可实现：您本地的 PC 或服务器通过公网连接 ECS Linux 6379 端口，对云数据库 Redis 进行访问。</p>
+
       
     </div>
     
@@ -377,8 +384,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/24/oss迁移/" rel="next" title="oss迁移">
-                <i class="fa fa-chevron-left"></i> oss迁移
+              <a href="/2018/06/11/MAC安装pycurl/" rel="next" title="MAC安装pycurl">
+                <i class="fa fa-chevron-left"></i> MAC安装pycurl
               </a>
             
           </div>
@@ -387,8 +394,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/08/Yokiy开源运维平台/" rel="prev" title="Yokiy 运维自动化平台项目">
-                Yokiy 运维自动化平台项目 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/11/修改mysql的definer/" rel="prev" title="﻿修改mysql的definer">
+                ﻿修改mysql的definer <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -522,7 +529,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改function、procedure的definer"><span class="nav-number">1.</span> <span class="nav-text">修改function、procedure的definer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改event的definer"><span class="nav-number">2.</span> <span class="nav-text">修改event的definer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改view的definer"><span class="nav-number">3.</span> <span class="nav-text">修改view的definer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改trigger的definer"><span class="nav-number">4.</span> <span class="nav-text">修改trigger的definer</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#在云服务器-ECS-Linux-中安装-rinetd。"><span class="nav-number">1.</span> <span class="nav-text">在云服务器 ECS Linux 中安装 rinetd。</span></a></li></ol></div>
             
 
           </div>
