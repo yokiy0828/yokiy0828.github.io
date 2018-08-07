@@ -95,17 +95,17 @@
 
 
 
-<meta name="description" content="1ImportError: pycurl: libcurl link-time ssl backend (openssl) is different from compile-timessl backend (none/other) 这个问题是可以用重新安装解决123pip uninstall pycurlexport PYCURL_SSL_LIBRARY=opensslpip install p">
+<meta name="description" content="安装模块完成以下操作安装Python SDK：  安装SDK核心库。  如果您使用Python 2.x，执行以下命令，安装阿里云SDK核心库： 1pip install aliyun-python-sdk-core  如果您使用Python 3.x，执行以下命令，安装阿里云SDK核心库： 1pip install aliyun-python-sdk-core-v3    安装云产品的SDK。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MAC安装pycurl">
-<meta property="og:url" content="http://yokiy.com/2018/06/11/MAC安装pycurl/index.html">
+<meta property="og:title" content="Python SDK 阿里云容器镜像仓库">
+<meta property="og:url" content="http://yokiy.com/2018/08/07/Python-SDK-阿里云容器镜像仓库/index.html">
 <meta property="og:site_name" content="Yokiy">
-<meta property="og:description" content="1ImportError: pycurl: libcurl link-time ssl backend (openssl) is different from compile-timessl backend (none/other) 这个问题是可以用重新安装解决123pip uninstall pycurlexport PYCURL_SSL_LIBRARY=opensslpip install p">
+<meta property="og:description" content="安装模块完成以下操作安装Python SDK：  安装SDK核心库。  如果您使用Python 2.x，执行以下命令，安装阿里云SDK核心库： 1pip install aliyun-python-sdk-core  如果您使用Python 3.x，执行以下命令，安装阿里云SDK核心库： 1pip install aliyun-python-sdk-core-v3    安装云产品的SDK。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-11T03:23:11.000Z">
+<meta property="og:updated_time" content="2018-08-07T03:32:46.443Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MAC安装pycurl">
-<meta name="twitter:description" content="1ImportError: pycurl: libcurl link-time ssl backend (openssl) is different from compile-timessl backend (none/other) 这个问题是可以用重新安装解决123pip uninstall pycurlexport PYCURL_SSL_LIBRARY=opensslpip install p">
+<meta name="twitter:title" content="Python SDK 阿里云容器镜像仓库">
+<meta name="twitter:description" content="安装模块完成以下操作安装Python SDK：  安装SDK核心库。  如果您使用Python 2.x，执行以下命令，安装阿里云SDK核心库： 1pip install aliyun-python-sdk-core  如果您使用Python 3.x，执行以下命令，安装阿里云SDK核心库： 1pip install aliyun-python-sdk-core-v3    安装云产品的SDK。">
 
 
 
@@ -135,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yokiy.com/2018/06/11/MAC安装pycurl/"/>
+  <link rel="canonical" href="http://yokiy.com/2018/08/07/Python-SDK-阿里云容器镜像仓库/"/>
 
 
 
 
 
-  <title>MAC安装pycurl | Yokiy</title>
+  <title>Python SDK 阿里云容器镜像仓库 | Yokiy</title>
   
 
 
@@ -278,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yokiy.com/2018/06/11/MAC安装pycurl/">
+    <link itemprop="mainEntityOfPage" href="http://yokiy.com/2018/08/07/Python-SDK-阿里云容器镜像仓库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yokiy">
@@ -295,7 +295,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MAC安装pycurl</h1>
+          <h1 class="post-title" itemprop="name headline">Python SDK 阿里云容器镜像仓库</h1>
         
 
         <div class="post-meta">
@@ -307,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T11:22:41+08:00">
-                2018-06-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-07T11:01:44+08:00">
+                2018-08-07
               </time>
             
 
@@ -345,10 +345,23 @@
       
 
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ImportError: pycurl: libcurl link-time ssl backend (openssl) is different from compile-timessl backend (none/other)</span><br></pre></td></tr></table></figure>
-<p>这个问题是可以用重新安装解决<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall pycurl</span><br><span class="line">export PYCURL_SSL_LIBRARY=openssl</span><br><span class="line">pip install pycurl</span><br></pre></td></tr></table></figure></p>
-<p>但是这里有一个坑：在高版本的mac系统环境变量里是找不到openssl的头文件的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall pycurl# 卸载库</span><br><span class="line">export PYCURL_SSL_LIBRARY=openssl</span><br><span class="line">export LDFLAGS=-L/usr/local/opt/openssl/lib</span><br><span class="line">export CPPFLAGS=-I/usr/local/opt/openssl/include# openssl相关头文件路径</span><br><span class="line">pip install pycurl --compile --no-cache-dir# 重新编译安装</span><br></pre></td></tr></table></figure></p>
-<p>环境信息：<br>Mac High Sierra 10.13.2<br>Python 3.6.0<br>pip 9.0.1<br>pycurl (7.43.0.1)</p>
+        <h3 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块"></a>安装模块</h3><p>完成以下操作安装Python SDK：</p>
+<ol>
+<li><p>安装SDK核心库。</p>
+<ul>
+<li><p>如果您使用Python 2.x，执行以下命令，安装阿里云SDK核心库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install aliyun-python-sdk-core</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果您使用Python 3.x，执行以下命令，安装阿里云SDK核心库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install aliyun-python-sdk-core-v3</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>安装云产品的SDK。</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install aliyun-python-sdk-cr</span><br></pre></td></tr></table></figure>
+<h3 id="阿里云仓库SDK使用"><a href="#阿里云仓库SDK使用" class="headerlink" title="阿里云仓库SDK使用"></a>阿里云仓库SDK使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> aliyunsdkcore <span class="keyword">import</span> client</span><br><span class="line"><span class="keyword">from</span> aliyunsdkcr.request.v20160607 <span class="keyword">import</span> GetImageLayerRequest,UpdateRepoRequest,CreateRepoRequest</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置Client</span></span><br><span class="line">client.region_provider.add_endpoint(<span class="string">"cr"</span>, <span class="string">"cn-hangzhou"</span>, <span class="string">"cr.cn-hangzhou.aliyuncs.com"</span>)</span><br><span class="line">apiClient = client.AcsClient(<span class="string">'AccessKeyID'</span>, <span class="string">'AccessKeySecret'</span>, <span class="string">'cn-hangzhou'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">### 获取信息</span></span><br><span class="line"><span class="comment">#构造请求</span></span><br><span class="line">request = GetImageLayerRequest.GetImageLayerRequest()</span><br><span class="line"><span class="comment"># 设置参数</span></span><br><span class="line">request.set_uri_pattern(<span class="string">"/repos/rokid_public/busybox"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 发起请求</span></span><br><span class="line">response = apiClient.do_action_with_exception(request)</span><br><span class="line"><span class="comment"># 处理结果</span></span><br><span class="line">print(response)</span><br><span class="line"></span><br><span class="line"><span class="comment">### 更新信息</span></span><br><span class="line">request = UpdateRepoRequest.UpdateRepoRequest()</span><br><span class="line">request.set_RepoName(<span class="string">'tomcat'</span>)</span><br><span class="line">request.set_RepoNamespace(<span class="string">'rokid_public'</span>)</span><br><span class="line">request.set_content(</span><br><span class="line">    <span class="string">'''&#123;</span></span><br><span class="line"><span class="string">        "Repo": &#123;</span></span><br><span class="line"><span class="string">            "Summary": "test",</span></span><br><span class="line"><span class="string">            "Repotype": "PRIVATE"</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">    &#125;'''</span></span><br><span class="line">)</span><br><span class="line"><span class="comment"># 发起请求</span></span><br><span class="line">response = apiClient.do_action_with_exception(request)</span><br><span class="line"><span class="comment"># 处理结果</span></span><br><span class="line">print(response)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -378,8 +391,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/11/binlog导出/" rel="next" title="binlog导出">
-                <i class="fa fa-chevron-left"></i> binlog导出
+              <a href="/2018/06/29/K8S移除节点/" rel="next" title="K8S移除节点">
+                <i class="fa fa-chevron-left"></i> K8S移除节点
               </a>
             
           </div>
@@ -387,10 +400,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/11/阿里云redis外网连接/" rel="prev" title="阿里云redis外网连接">
-                阿里云redis外网连接 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -452,8 +461,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -504,6 +522,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装模块"><span class="nav-number">1.</span> <span class="nav-text">安装模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阿里云仓库SDK使用"><span class="nav-number">2.</span> <span class="nav-text">阿里云仓库SDK使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
